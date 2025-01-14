@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "../components/Footer";
 
 function Home() {
   const [formData, setFormData] = useState({
@@ -43,15 +44,15 @@ function Home() {
     e.preventDefault();
 
     // Format pesan WhatsApp
-    const message = `Assalamualaikum ${formData.salutation} ${formData.namaPengajar},\n\n` +
+    const message = `Assalamualaikum ${formData.salutation} ${formData.namaPengajar},\n` +
     `Mohon maaf mengganggu waktunya, saya Angga Training Neutron YK-19.\n\n` +
     `Mau konfirmasi jadwal mengajar:\n` +
-    `${formData.hariTanggal}\n\n` +
+    `*${formData.hariTanggal}*\n\n` +
     `${formData.jadwal.map((j) => 
-      `- ${j.kelas}, Mapel: ${j.mapel}, Jam: ${j.jam} wib, di Cabang: ${j.cabang}\n` +
-      `${formData.jenis}`
-    ).join("\n")}\n\n` +
-    `Mohon di kroscekan kembali apabila jadwal tidak sesuai seperti biasanya atau bertabrakan dengan cabang yang lain.\n\n` +
+      `- *${j.kelas}*,\n Mapel: ${j.mapel},\n Jam: ${j.jam} wib,\n di Cabang: ${j.cabang}\n` +
+      `${formData.jenis}\n`
+    ).join("\n")}\n` +
+    `Mohon di _cross-check_ kembali apabila jadwal tidak sesuai seperti biasanya atau bertabrakan dengan cabang yang lain.\n\n` +
     `Di tunggu konfirmasinya.\nMatur nuwun.`;
 
     // Nomor WhatsApp tujuan dari input pengguna
@@ -92,7 +93,7 @@ function Home() {
       <div className="h-screen overflow-y-hidden w-screen flex items-center justify-center bg-gradient-to-r from-teal-500 via-sky-500 to-purple-500 p-6">
         <form
           onSubmit={handleSubmit}
-          className="bg-gradient-to-b from-white via-white/50 to-white/20 lg:p-8 mt-20 rounded-xl shadow-lg w-full max-w-6xl overflow-y-hidden"
+          className="bg-gradient-to-b from-white via-white/50 to-white/20 lg:p-8 mt-10 rounded-xl shadow-lg w-full max-w-6xl overflow-y-hidden"
         >
           <h1 className="text-2xl text-center font-bold mb-2 text-gray-800">
             Form Konfirmasi Pengajar✨
@@ -234,6 +235,7 @@ function Home() {
             </div>
         </form>
       </div>
+      <Footer />
     </>
   );
 }
