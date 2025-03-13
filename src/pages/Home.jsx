@@ -45,7 +45,7 @@ function Home() {
 
     // Format pesan WhatsApp
     const message = `Assalamualaikum ${formData.salutation} ${formData.namaPengajar},\n` +
-    `Mohon maaf mengganggu waktunya, saya Angga Training Neutron YK-19.\n\n` +
+    `Mohon maaf mengganggu waktunya, saya Nabil dari Neutron YK-19.\n\n` +
     `Mau konfirmasi jadwal mengajar:\n` +
     `*${formData.hariTanggal}*\n\n` +
     `${formData.jadwal.map((j) => 
