@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 function Home() {
   const [formData, setFormData] = useState({
     salutation: "mas",
+    salam: "assalamualaikum",
     namaPengajar: "",
     namaPengirim: "",
     hariTanggal: "",
@@ -31,7 +32,7 @@ function Home() {
     setFormData({
       ...formData,
       jadwal: [...formData.jadwal, { kelas: "", mapel: "", jam: "", cabang: "YK-19" }],
-      program: "(REG)",
+      program: "",
     });
   };
 
@@ -45,7 +46,7 @@ function Home() {
     e.preventDefault();
 
     // Format pesan WhatsApp
-    const message = `Assalamualaikum ${formData.salutation} ${formData.namaPengajar},\n` +
+    const message = `${formData.salam} ${formData.salutation} ${formData.namaPengajar},\n` +
     `Mohon maaf mengganggu waktunya, saya ${formData.namaPengirim} dari Neutron YK-19.\n\n` +
     `Mau konfirmasi jadwal mengajar:\n` +
     `*${formData.hariTanggal}*\n\n` +
@@ -79,6 +80,7 @@ function Home() {
     // Reset form setelah submit
     setFormData({
       salutation: "mas",
+      salam: "assalamualaikum",
       namaPengajar: "",
       namaPengirim: "",
       hariTanggal: "",
@@ -92,7 +94,7 @@ function Home() {
     <>
       <Navbar />
       <ToastContainer />
-      <div className="h-screen overflow-y-hidden w-screen flex items-center justify-center bg-gradient-to-r from-teal-500 via-sky-500 to-purple-500 p-6">
+      <div className="h-screen overflow-y-hidden w-screen flex items-center justify-center bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 p-6">
         <form
           onSubmit={handleSubmit}
           className="bg-gradient-to-b from-white via-white/50 to-white/20 lg:p-8 mt-10 rounded-xl shadow-lg w-full max-w-6xl overflow-y-hidden"
@@ -102,23 +104,42 @@ function Home() {
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="overflow-y-hidden px-2">
+              <div className="grid grid-cols-2 gap-4">
+
               <div className="mb-6">
                 <label className="block text-gray-700 font-medium">Salam</label>
+                <select
+                  name="salam"
+                  value={formData.salam}
+                  onChange={handleChange}
+                  className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                  <option value="Assalamualaikum">Assalamualaikum</option>
+                  <option value="Selamat Pagi">Pagi</option>
+                  <option value="Selamat Siang">Siang</option>
+                  <option value="Selamat Sore">Sore</option>
+                </select>
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-gray-700 font-medium">Sapaan</label>
                 <select
                   name="salutation"
                   value={formData.salutation}
                   onChange={handleChange}
                   className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="mas">Mas</option>
-                  <option value="mbak">Mbak</option>
-                  <option value="pak">Pak</option>
-                  <option value="ibu">Ibu</option>
+                  >
+                  <option value="Mas">Mas</option>
+                  <option value="Mbak">Mbak</option>
+                  <option value="Pak">Pak</option>
+                  <option value="Ibu">Ibu</option>
                 </select>
               </div>
 
+                  </div>
+
               <div className="mb-6">
-                <label className="block text-gray-700 font-medium">Nama Pengajar</label>
+                <label className="block text-gray-700 font-bold">Nama Pengajar</label>
                 <input
                   type="text"
                   name="namaPengajar"
@@ -131,13 +152,13 @@ function Home() {
               </div>
 
               <div className="mb-6">
-                <label className="block text-gray-700 font-medium">Nama Pengirim</label>
+                <label className="block text-gray-700 font-bold">Nama Pengirim</label>
                 <input
                   type="text"
                   name="namaPengirim"
                   value={formData.namaPengirim}
                   onChange={handleChange}
-                  className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   placeholder="Nama Pengirim"
                   required
                 />
@@ -151,7 +172,7 @@ function Home() {
                   value={formData.hariTanggal}
                   onChange={handleChange}
                   className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Contoh: Rabu, 18 Desember 2024"
+                  placeholder="Contoh: Jum'at, 21 Maret 2025"
                   required
                 />
               </div>
@@ -185,7 +206,7 @@ function Home() {
                       value={jadwal.kelas}
                       onChange={(e) => handleJadwalChange(index, e)}
                       className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Contoh: XI IPA 2"
+                      placeholder="Contoh: 2 SMA"
                       required
                     />
                   </div>
@@ -257,7 +278,7 @@ function Home() {
             
           <button
             type="submit"
-            className="w-full transition-all font-bold transform duration-300 hover:scale-95 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full transition-all font-bold transform duration-300 hover:scale-95 bg-red-500 text-white p-3 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
             Kirim Konfirmasi
           </button>
