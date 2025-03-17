@@ -13,9 +13,8 @@ function Home() {
     hariTanggal: "",
     nomorTujuan: "", // Tambahkan nomor tujuan di state
     jadwal: [
-      { kelas: "", mapel: "", jam: "", cabang: "YK-19" }, // Default satu jadwal
+      { kelas: "", mapel: "", jam: "", cabang: "YK-19", program: "" }, // Default satu jadwal
     ],
-    program: "",
   });
 
   const handleChange = (e) => {
@@ -31,8 +30,7 @@ function Home() {
   const addJadwal = () => {
     setFormData({
       ...formData,
-      jadwal: [...formData.jadwal, { kelas: "", mapel: "", jam: "", cabang: "YK-19" }],
-      program: "",
+      jadwal: [...formData.jadwal, { kelas: "", mapel: "", jam: "", cabang: "YK-19" , program: ""}],
     });
   };
 
@@ -52,7 +50,7 @@ function Home() {
     `*${formData.hariTanggal}*\n\n` +
     `${formData.jadwal.map((j) => 
       `- *${j.kelas}*,\n Mapel: ${j.mapel},\n Jam: ${j.jam} wib,\n di Cabang: ${j.cabang}\n` +
-      `(${formData.program})\n`
+      `(${j.program})\n`
     ).join("\n")}\n` +
     `Mohon di _cross-check_ kembali apabila jadwal tidak sesuai seperti biasanya atau bertabrakan dengan cabang yang lain.\n\n` +
     `Di tunggu konfirmasinya.\nMatur nuwun.`;
@@ -244,8 +242,8 @@ function Home() {
                     <input
                       type="text"
                       name="program"
-                      value={formData.program}
-                      onChange={handleChange}
+                      value={jadwal.program}
+                      onChange={(e) => handleJadwalChange(index, e)}
                       className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="REG / PIKPU / TAMBAHAN / KUPAS TUNTAS"
                       required
