@@ -6,8 +6,8 @@ import Footer from "../components/Footer";
 
 function Home() {
   const [formData, setFormData] = useState({
-    salutation: "mas",
-    salam: "assalamualaikum",
+    salutation: "Mas",
+    salam: "Assalamualaikum",
     namaPengajar: "",
     namaPengirim: "",
     hariTanggal: "",
@@ -79,8 +79,8 @@ function Home() {
 
     // Reset form setelah submit
     setFormData({
-      salutation: "mas",
-      salam: "assalamualaikum",
+      salutation: "Mas",
+      salam: "Assalamualaikum",
       namaPengajar: "",
       namaPengirim: "",
       hariTanggal: "",
