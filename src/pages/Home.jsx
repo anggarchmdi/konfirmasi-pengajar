@@ -118,6 +118,7 @@ function Home() {
                   <option value="Selamat Pagi">Pagi</option>
                   <option value="Selamat Siang">Siang</option>
                   <option value="Selamat Sore">Sore</option>
+                  <option value="Selamat Malam">Sore</option>
                 </select>
               </div>
 
