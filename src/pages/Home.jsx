@@ -8,12 +8,13 @@ function Home() {
   const [formData, setFormData] = useState({
     salutation: "mas",
     namaPengajar: "",
+    namaPengirim: "",
     hariTanggal: "",
     nomorTujuan: "", // Tambahkan nomor tujuan di state
     jadwal: [
       { kelas: "", mapel: "", jam: "", cabang: "YK-19" }, // Default satu jadwal
     ],
-    jenis: "(REG)",
+    program: "",
   });
 
   const handleChange = (e) => {
@@ -30,7 +31,7 @@ function Home() {
     setFormData({
       ...formData,
       jadwal: [...formData.jadwal, { kelas: "", mapel: "", jam: "", cabang: "YK-19" }],
-      jenis: "(REG)",
+      program: "(REG)",
     });
   };
 
@@ -45,12 +46,12 @@ function Home() {
 
     // Format pesan WhatsApp
     const message = `Assalamualaikum ${formData.salutation} ${formData.namaPengajar},\n` +
-    `Mohon maaf mengganggu waktunya, saya Nabil dari Neutron YK-19.\n\n` +
+    `Mohon maaf mengganggu waktunya, saya ${formData.namaPengirim} dari Neutron YK-19.\n\n` +
     `Mau konfirmasi jadwal mengajar:\n` +
     `*${formData.hariTanggal}*\n\n` +
     `${formData.jadwal.map((j) => 
       `- *${j.kelas}*,\n Mapel: ${j.mapel},\n Jam: ${j.jam} wib,\n di Cabang: ${j.cabang}\n` +
-      `${formData.jenis}\n`
+      `(${formData.program})\n`
     ).join("\n")}\n` +
     `Mohon di _cross-check_ kembali apabila jadwal tidak sesuai seperti biasanya atau bertabrakan dengan cabang yang lain.\n\n` +
     `Di tunggu konfirmasinya.\nMatur nuwun.`;
@@ -79,10 +80,11 @@ function Home() {
     setFormData({
       salutation: "mas",
       namaPengajar: "",
+      namaPengirim: "",
       hariTanggal: "",
       nomorTujuan: "", // Reset nomor tujuan juga
       jadwal: [{ kelas: "", mapel: "", jam: "", cabang: "YK-19" }],
-      jenis: "(REG)",
+      program: "",
     });
   };
 
@@ -129,6 +131,19 @@ function Home() {
               </div>
 
               <div className="mb-6">
+                <label className="block text-gray-700 font-medium">Nama Pengirim</label>
+                <input
+                  type="text"
+                  name="namaPengirim"
+                  value={formData.namaPengirim}
+                  onChange={handleChange}
+                  className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Nama Pengirim"
+                  required
+                />
+              </div>
+
+              <div className="mb-6">
                 <label className="block text-gray-700 font-medium">Hari dan Tanggal</label>
                 <input
                   type="text"
@@ -155,7 +170,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="overflow-y-auto max-h-[calc(80vh-130px)] p-8">
+            <div className="overflow-y-auto max-h-[calc(80vh-80px)] p-8">
               {formData.jadwal.map((jadwal, index) => (
                 <div
                   key={index}
@@ -197,6 +212,20 @@ function Home() {
                       onChange={(e) => handleJadwalChange(index, e)}
                       className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Contoh: 08:00 - 09:30"
+                      required
+                    />
+                  </div>
+
+
+                  <div className="mb-4">
+                    <label className="block text-gray-700">Program</label>
+                    <input
+                      type="text"
+                      name="program"
+                      value={formData.program}
+                      onChange={handleChange}
+                      className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="REG / PIKPU / TAMBAHAN / KUPAS TUNTAS"
                       required
                     />
                   </div>
