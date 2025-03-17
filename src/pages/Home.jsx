@@ -83,8 +83,7 @@ function Home() {
       namaPengirim: "",
       hariTanggal: "",
       nomorTujuan: "", // Reset nomor tujuan juga
-      jadwal: [{ kelas: "", mapel: "", jam: "", cabang: "YK-19" }],
-      program: "",
+      jadwal: [{ kelas: "", mapel: "", jam: "", cabang: "YK-19", program: "" }],
     });
   };
 
